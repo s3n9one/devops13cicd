@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-lab
+  labels:
+    app: devops-lab
+    release-date: RELEASE-DATE
+  namespace: devops-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devops-lab
+  template:
+    metadata:
+      labels:
+        app: devops-lab
+        svc: frontend
+        release-date: RELEASE-DATE
+    spec:
+      containers:
+      - name: devops-lab-server
+        image: s3n9one/devops-lab:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-devops
+  labels:
+    app: devops-lab
+  namespace: devops-lab
+spec:
+  type: LoadBalancer
+  selector:
+    app: devops-lab
+    svc: frontend
+  ports:
+  - port: 12345
+    targetPort: 8000
+  externalIPs:
+  - 192.168.1.37

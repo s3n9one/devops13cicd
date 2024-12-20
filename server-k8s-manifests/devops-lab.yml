@@ -4,7 +4,7 @@ metadata:
   name: devops-lab
   labels:
     app: devops-lab
-    release-date: RELEASE-DATE
+    release-date: s1734717745
   namespace: devops-lab
 spec:
   replicas: 1
@@ -16,7 +16,7 @@ spec:
       labels:
         app: devops-lab
         svc: frontend
-        release-date: RELEASE-DATE
+        release-date: s1734717745
     spec:
       containers:
       - name: devops-lab-server

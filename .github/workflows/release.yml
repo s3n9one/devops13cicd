@@ -28,6 +28,7 @@ jobs:
           context: ./server/
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/devops-lab:latest 
+
   touch-k8s-manifest:
     needs: [ push_to_registry ]
     runs-on: ubuntu-24.04
